@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/st.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEM END</title>
+</head>
+<body>
+    <header>
+        <div class="logo">Trade-Sphere<img src="bg.jpg" alt="Logo" class="nav-logo"></div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#post-ad">Post Ad</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="search-bar">
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Search for products, brands and more">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="slideshow-container">
+        <div class="slideshow">
+            <div class="slide">
+                <img src="manju.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="kavz.png" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="atyul.png" alt="Slide 3">
+            </div>
+        </div>
+    </section>
+
+    <section class="product-listing">
+        <h2>Explore Page</h2>
+        <table>
+            <tr>
+                <th>P_ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Contact number</th>
+                <th>Action</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>{{ product[1] }}</td>
+                <td>{{ product[2] }}</td>
+                <td>{{ product[3] }}</td>
+                <td>{{ product[4] }}</td>
+                <td>{{product[5]}}</td>
+                <td><a href="/delete/{{ product[0] }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="post-ad" class="post-ad">
+        <h2>Post Your Ad</h2>
+        <form action="/sub" method="post" enctype="multipart/form-data">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required placeholder="Enter product name">
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required placeholder="Enter Description"></textarea>
+
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" required placeholder="Enter Price">
+
+            <label for="contact">Contact Number</label>
+            <input type="number" id="contact" name="contact" required placeholder="Enter your contact number">
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="electronics">Electronics</option>
+                <option value="vehicles">Vehicles</option>
+                <option value="Sports">Sports</option>
+                <option value="House-hold">House-hold</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <button type="submit">Post Ad</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 OLX-like App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
